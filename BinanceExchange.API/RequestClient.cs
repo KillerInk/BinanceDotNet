@@ -30,7 +30,12 @@ namespace BinanceExchange.API
         private ILog _logger;
         private readonly object LockObject = new object();
 
-        public RequestClient()
+        public static RequestClient GetRequestClient()
+        {
+            return new RequestClient();
+        }
+
+        private RequestClient()
         {
             _rateSemaphore = new SemaphoreSlim(_limit, _limit);
             Stopwatch = new Stopwatch();
