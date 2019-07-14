@@ -17,5 +17,7 @@ namespace BinanceExchange.API.Models.Response
 
         [DataMember(Order = 3)]
         public decimal Locked { get; set; }
+        [DataMember(Order = 4)]
+        public decimal Total { get{ return Free + Locked; } }
     }
 }
