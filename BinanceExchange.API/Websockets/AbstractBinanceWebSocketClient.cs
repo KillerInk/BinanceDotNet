@@ -6,6 +6,7 @@ using BinanceExchange.API.Client.Interfaces;
 using BinanceExchange.API.Enums;
 using BinanceExchange.API.Extensions;
 using BinanceExchange.API.Models.WebSocket;
+using BinanceExchange.API.Models.WebSocket.Interfaces;
 using BinanceExchange.API.Utility;
 using log4net;
 using Newtonsoft.Json;
@@ -157,7 +158,7 @@ namespace BinanceExchange.API.Websockets
         /// </summary>
         /// <param name="messageEventHandler"></param>
         /// <returns></returns>
-        public Guid ConnectToIndividualSymbolTickerWebSocket(BinanceWebSocketMessageHandler<BinanceAggregateTradeData> messageEventHandler)
+        public Guid ConnectToAllMarketSymbolTickerWebSocket(BinanceWebSocketMessageHandler<BinanceTradeDataList> messageEventHandler)
         {
             Logger.Debug("Connecting to All Market Symbol Ticker Web Socket");
             var endpoint = new Uri($"{BaseWebsocketUri}/!ticker@arr");
@@ -236,7 +237,7 @@ namespace BinanceExchange.API.Websockets
             return websocket.Id;
         }
 
-        private Guid CreateBinanceWebSocket<T>(Uri endpoint, BinanceWebSocketMessageHandler<T> messageEventHandler) where T : IWebSocketResponse
+        private Guid CreateBinanceWebSocket<T>(Uri endpoint, BinanceWebSocketMessageHandler<T> messageEventHandler) where T : ISocketResponse
         {
             var websocket = new BinanceWebSocket(endpoint.AbsoluteUri);
             websocket.OnOpen += (sender, e) =>
