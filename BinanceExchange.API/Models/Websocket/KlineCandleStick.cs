@@ -11,5 +11,6 @@ namespace BinanceExchange.API.Models.WebSocket
         public decimal Close { get; set; }
 
         public decimal Volume { get; set; }
+        public long Time { get; set; }
     }
 }
