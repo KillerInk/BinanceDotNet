@@ -1,3 +1,5 @@
+using System;
+
 namespace BinanceExchange.API.Models.WebSocket
 {
     public class KlineCandleStick
@@ -11,6 +13,6 @@ namespace BinanceExchange.API.Models.WebSocket
         public decimal Close { get; set; }
 
         public decimal Volume { get; set; }
-        public long Time { get; set; }
+        public DateTime Time { get; set; }
     }
 }
